@@ -1,0 +1,21 @@
+-- Table: public.attendance
+
+-- DROP TABLE IF EXISTS public.attendance;
+
+CREATE TABLE IF NOT EXISTS public.attendance
+(
+    id bigint NOT NULL DEFAULT nextval('attendance_id_seq'::regclass),
+    attendance character(1) COLLATE pg_catalog."default",
+    date date,
+    student_id bigint,
+    CONSTRAINT attendance_pkey PRIMARY KEY (id),
+    CONSTRAINT fknq6vm31it076obtjf2qp5coim FOREIGN KEY (student_id)
+        REFERENCES public.student (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.attendance
+    OWNER to postgres;
